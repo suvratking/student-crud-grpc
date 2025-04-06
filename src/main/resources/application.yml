@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: SPRING-BOOT-SECURITY
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5435/postgres?currentSchema=grpc
+    username: postgres
+    password: password
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+
+grpc:
+  server:
+    port: 9090
+    enable-reflection: true
+    enable-http2: true

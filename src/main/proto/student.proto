@@ -1,0 +1,70 @@
+syntax = "proto3";
+
+package studentgrpc;
+
+option java_multiple_files = true;
+option java_package = "com.king.grpc.student";
+option java_outer_classname = "StudentProto";
+
+import "Department.proto";
+
+service StudentService {
+  rpc CreateStudent (CreateStudentRequest) returns (CreateStudentResponse);
+  rpc GetStudent (GetStudentRequest) returns (GetStudentResponse);
+  rpc UpdateStudent (UpdateStudentRequest) returns (CreateStudentResponse);
+  rpc DeleteStudent (DeleteStudentRequest) returns (DeleteStudentResponse);
+  rpc ListStudents (Empty) returns (ListStudentsResponse);
+}
+
+message CreateStudentRequest{
+  string name = 1;
+  int32 age = 2;
+  string email = 3;
+  repeated int64 departmentId = 4;
+}
+
+message CreateStudentResponse{
+  int64 id = 1;
+  string name = 2;
+  int32 age = 3;
+  string email = 4;
+  repeated departmentgrpc.Department department = 5;
+}
+
+message GetStudentRequest{
+  int64 id = 1;
+}
+
+message GetStudentResponse{
+  int64 id = 1;
+  string name = 2;
+  int32 age = 3;
+  string email = 4;
+  repeated departmentgrpc.Department department = 5;
+}
+
+message UpdateStudentRequest{
+  int64 id = 1;
+  string name = 2;
+  int32 age = 3;
+  string email = 4;
+  repeated int64 departmentId = 5;
+}
+
+message DeleteStudentRequest{
+  int64 id = 1;
+}
+
+message DeleteStudentResponse{
+  bool status = 1;
+  string message = 2;
+}
+
+message ListStudentsResponse{
+  repeated GetStudentResponse students = 1;
+}
+
+message Empty{}
+
+
+

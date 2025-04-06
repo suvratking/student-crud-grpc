@@ -1,0 +1,64 @@
+syntax = "proto3";
+
+package departmentgrpc;
+
+option java_multiple_files = true;
+option java_package = "com.king.grpc.department";
+option java_outer_classname = "DepartmentProto";
+
+service DepartmentService {
+  rpc CreateDepartment (CreateDepartmentRequest) returns (CreateDepartmentResponse);
+  rpc GetDepartment (GetDepartmentRequest) returns (GetDepartmentResponse);
+  rpc UpdateDepartment (UpdateDepartmentRequest) returns (CreateDepartmentResponse);
+  rpc DeleteDepartment (DeleteDepartmentRequest) returns (DeleteDepartmentResponse);
+  rpc ListDepartments (Empty) returns (ListDepartmentsResponse);
+}
+
+message Department {
+  int64 id = 1;
+  string name = 2;
+  string location = 3;
+}
+
+message CreateDepartmentRequest{
+  string name = 1;
+  string location = 2;
+}
+
+message CreateDepartmentResponse{
+  int64 id = 1;
+  string name = 2;
+  string location = 3;
+}
+
+message GetDepartmentRequest{
+  int64 id = 1;
+}
+
+message GetDepartmentResponse{
+  int64 id = 1;
+  string name = 2;
+  string location = 3;
+}
+
+message UpdateDepartmentRequest{
+  int64 id = 1;
+  string name = 2;
+  string location = 3;
+}
+
+message DeleteDepartmentRequest{
+  int64 id = 1;
+}
+
+message DeleteDepartmentResponse{
+  bool status = 1;
+  string message = 2;
+}
+
+message ListDepartmentsResponse{
+  repeated Department departments = 1;
+}
+
+message Empty {
+}
