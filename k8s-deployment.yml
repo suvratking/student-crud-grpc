@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: student-crud-grpc
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: student-crud-grpc
+  template:
+    metadata:
+      labels:
+        app: student-crud-grpc
+    spec:
+      containers:
+        - name: student-crud-grpc
+          image: suvrat777/student-crud-grpc:1.0.2
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 9090
+              name: grpc
+            - containerPort: 8080
+              name: http
+          env:
+            - name: SPRING_DATASOURCE_URL
+              value: jdbc:postgresql://host.docker.internal:5435/postgres?currentSchema=grpc
+            - name: SPRING_DATASOURCE_USERNAME
+              value: postgres
+            - name: SPRING_DATASOURCE_PASSWORD
+              value: password

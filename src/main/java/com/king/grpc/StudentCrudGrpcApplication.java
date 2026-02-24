@@ -7,10 +7,13 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RequiredArgsConstructor
 @EnableTransactionManagement
+@RestController
 public class StudentCrudGrpcApplication {
 
 	private final StudentRepository studentRepository;
@@ -25,6 +28,11 @@ public class StudentCrudGrpcApplication {
 
 		StudentEntity build = StudentEntity.builder().name(fake.name().name()).email(fake.internet().emailAddress()).age(fake.number().numberBetween(0, 80)).build();
 		studentRepository.save(build);
+	}
+
+	@GetMapping("/hello")
+	public String hello() {
+		return "Hello World";
 	}
 
 }
