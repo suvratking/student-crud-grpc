@@ -21,3 +21,6 @@ grpc:
     port: 9090
     enable-reflection: true
     enable-http2: true
+
+server:
+  port: 8083
